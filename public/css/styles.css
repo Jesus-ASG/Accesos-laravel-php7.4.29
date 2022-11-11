@@ -1,0 +1,52 @@
+/* Generales */
+.centrado{
+    align-items: center;
+    text-align: center;
+}
+
+/* Plantilla principal */
+.bg-navbar{
+    background-color: #032a4c;
+}
+
+.navbar-item {
+    margin: 10px;
+}
+.navbar-item a{
+    text-decoration: none;
+    color: #fff;
+}
+.navbar-item a:hover{
+    font-weight: bold;
+    color: #fff;
+}
+
+/* Lector de código de barras*/
+.input-matricula{
+    border: 1px solid #032a4c;
+    border-radius: 10px;
+    padding: 10px 20px 10px 20px;
+    margin: 10px;
+}
+
+.input-inicio-sesion{
+    border: 1px solid #032a4c;
+    border-radius: 10px;
+    padding: 10px 20px 10px 20px;
+    margin: 10px;
+}
+
+.btn-entrar{
+    background-color: #075ba5;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+
+.container-entrada{
+    align-items: center;
+}
+
+.h1{
+    color: red;
+}
+
