@@ -22,7 +22,7 @@ class EstudiantesController extends Controller
         if (Auth::check()) {
             $user = Auth::user();
             $accesos = Acceso::where('fecha', Carbon::now()->toDateString())->get();
-            return view('ver-estudiantes', ['accesos' => $accesos, 'tipo' => $user->tipo]);
+            return view('ver-estudiantes', ['logged'=>true, 'accesos' => $accesos, 'tipo' => $user->tipo]);
         }
         else{
             return redirect(route('index'));

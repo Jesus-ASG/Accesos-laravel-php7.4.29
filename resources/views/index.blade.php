@@ -1,4 +1,4 @@
-@extends('plantilla_index')
+@extends('main')
 
 @section('titulo') Pagina principal @endsection
 

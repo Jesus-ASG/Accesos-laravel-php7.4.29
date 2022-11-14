@@ -11,7 +11,6 @@ class LoginController extends Controller
 {
     public function login(Request $request)
     {
-
         $request->validate([
             'matricula' => 'required',
             'password' => 'required'
@@ -54,19 +53,7 @@ class LoginController extends Controller
         
         Auth::login($user);
 
-        return redirect(route('logged'));
-    }
-
-    public function validation($user)
-    {  
-        if($user->tipo == 0)
-        {
-            return redirect()->intended(route('logged_admin'));
-        }
-        else
-        {
-            return redirect()->intended(route('logged'));
-        }
+        return redirect(route('lector'));
     }
 
     public function logout(Request $request)

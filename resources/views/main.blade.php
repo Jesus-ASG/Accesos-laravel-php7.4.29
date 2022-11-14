@@ -9,9 +9,10 @@
 
     <!-- Estilos propios -->
     <link rel="stylesheet" href="css/styles.css">
-
     <!--Bootstrap-->
     <link rel="stylesheet" href="bootstrap-5.0.2-dist/css/bootstrap.css">
+    <!-- Íconos -->
+    <script src="https://kit.fontawesome.com/f4ecb098da.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -23,14 +24,12 @@
                     <img src="img/LOGO-BUAP.jpg" height="80px" class="">
                 </a>
             </div>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse2">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse2">
-                @yield('nav-fields')
-                
-                
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                @includeWhen($logged, 'navbar-controlls.user')
+                @includeUnless($logged, 'navbar-controlls.guest')
             </div>
         </div>
     </nav>
