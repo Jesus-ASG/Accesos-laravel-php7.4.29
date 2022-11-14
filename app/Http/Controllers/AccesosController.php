@@ -29,7 +29,7 @@ class AccesosController extends Controller
 
         // obtiene un dato
         $estudiante = DB::table('estudiantes')->where('matricula', $request->matricula)->first();
-        if ($estudiante && $estudiante->activo == 1) {
+        if ($estudiante) {
             $acceso = new Acceso;
             $acceso->fecha = Carbon::now()->toDateString();
             $acceso->hora = Carbon::now()->toTimeString();

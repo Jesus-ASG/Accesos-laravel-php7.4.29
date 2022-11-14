@@ -46,7 +46,7 @@
 
             @if (session('success'))
                 <h6 class="alert alert-success">Ingreso correcto {{ session('success')[1] }} {{ session('success')[2] }} </h6>
-                {{ session('success')[0]->nombres }} {{ session('success')[0]->apellido_p }} {{ session('success')[0]->apellido_m }}
+                {{ session('success')[0]->nombre }}
             @endif
             @if (session('m_not_found'))
                 <h6 class="alert alert-warning">{{ session('m_not_found') }}</h6>

@@ -1,0 +1,66 @@
+base de datos
+modificar el .env con el nombre de la base de datos
+
+modelos 
+
+php artisan make:model Modelo -m
+
+en las migraciones modificar tabla de modelo como se quiera
+
+php artisan migrate
+
+--- si se equivocó
+php artisan migrate:rollback
+es como un ctrl+z
+
+
+Unir bd con una vista
+se necesita un controlador
+php artisan make:controller ModelosController
+
+
+REESTRUCTURAR BD PERO BORRANDO TODO
+modificar campos en las migraciones
+php artisan migrate:refresh
+
+
+REESTRUCTURAR BD CONSERVANDO datos
+php artisan make:migration update_cambios_tabla
+
+ir a esa tabla y poner 
+tabla al inicio
+public function up()
+{
+    Schema::create('employees', function (Blueprint $table) {
+        $table->id();
+        $table->string('emp_name');
+        $table->string('email');
+        $table->string('gender');
+        $table->smallInteger('active');
+        $table->timestamps();
+    });
+}
+
+documento en migrations:
+public function up() //aqui van las cosas nuevas
+{
+       Schema::table('employees', function (Blueprint $table) {
+               $table->renameColumn('emp_name', 'employee_name');// Renaming "emp_name" to "employee_name"
+               $table->string('gender',10)->change(); // Change Datatype length
+               $table->dropColumn('active'); // Remove "active" field
+               $table->smallInteger('status')->after('email'); // Add "status" column
+       });
+}
+
+public function down() // las cosas cuando se borre, es decir, quitar las nuevas y dejarlo como antes
+{
+        Schema::table('employees', function (Blueprint $table) {
+               $table->renameColumn('employee_name', 'emp_name');
+               $table->string('gender')->change(); 
+               $table->smallInteger('active');
+               $table->dropColumn('status');
+        });
+}
+
+hacer
+php artisan migrate

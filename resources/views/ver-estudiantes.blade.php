@@ -39,7 +39,7 @@
                 {{ $a->hora }} 
                 {{ $a->lugar }} 
 
-                {{ $a->estudiante->matricula }} {{ $a->estudiante->nombres }} {{ $a->estudiante->apellido_p }} {{ $a->estudiante->apellido_m }}
+                {{ $a->estudiante->no_lista }} {{ $a->estudiante->matricula }} {{ $a->estudiante->nombre }} {{ $a->estudiante->grupo }}
                 <hr>
             </p>
         @endforeach
