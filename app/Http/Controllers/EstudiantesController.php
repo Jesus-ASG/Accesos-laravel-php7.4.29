@@ -10,16 +10,18 @@ use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\DB;
 
+/* Descripción
+* Controlador que envía información a la plantilla 'ver-estudiantes'
+* esta plantilla le solicita información por medio de un filtro y este
+* controlador le responde con dicha información
+*/
+
 class EstudiantesController extends Controller
 {
     public function index(){
         if (Auth::check()) {
             $user = Auth::user();
             $accesos = Acceso::where('fecha', Carbon::now()->toDateString())->get();
-            //$accesos = DB::table('accesos')->where('fecha', Carbon::now()->toDateString())->get();
-
-            //$estudiantes = Estudiante::all();
-            //return view('ver-estudiantes', ['estudiantes' => $estudiantes]);
             return view('ver-estudiantes', ['accesos' => $accesos, 'tipo' => $user->tipo]);
         }
         else{

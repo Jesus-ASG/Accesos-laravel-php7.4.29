@@ -18,11 +18,15 @@ return new class extends Migration
             $table->date('fecha');
             $table->time('hora');
             $table->unsignedBigInteger('estudiante_id');
-            $table->string('lugar');
+            $table->unsignedBigInteger('espacio_id')->nullable();
             
             $table->foreign('estudiante_id')
                 ->references('id')->on('estudiantes')
                 ->onDelete('cascade');
+            
+            $table->foreign('espacio_id')
+                ->references('id')->on('espacios')
+                ->onDelete('set null');
         });
     }
 

@@ -4,37 +4,37 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Acceso;
+use App\Models\Espacio;
 use App\Models\Estudiante;
 use Carbon\Carbon;
 
 use Illuminate\Support\Facades\DB;
 
+/* Descripción
+* Controlador que registra los accesos de la plantilla 'lector'
+* si la matricula que se ingresa es válida se guarda uno de estos accesos
+* con la información de quien ingresó, fecha, hora y lugar de acceso
+* de lo contrario avisa que no se encontró dicha matrícula
+*/
 
 class AccesosController extends Controller
 {
-    /*
-    ---convenciones---
-    index: mostrar
-    store: guardar
-    update: actualizar
-    destroy: borrar
-    edit: editar
-    */
-
     public function store(Request $request)
     {
         $request->validate([
-            'matricula' => 'required'
+            'matricula' => 'required',
+            'espacio' => 'required'
         ]);
 
         // obtiene un dato
         $estudiante = DB::table('estudiantes')->where('matricula', $request->matricula)->first();
-        if ($estudiante) {
+        $validarEspacio = Espacio::find($request->espacio);
+        if ($estudiante && $validarEspacio) {
             $acceso = new Acceso;
             $acceso->fecha = Carbon::now()->toDateString();
             $acceso->hora = Carbon::now()->toTimeString();
             $acceso->estudiante_id = $estudiante->id;
-            $acceso->lugar = "Entrada";
+            $acceso->espacio_id = $validarEspacio->id;
 
             $acceso->save();
             return redirect()->route('lector')->with('success', [$estudiante, $acceso->fecha, $acceso->hora]);

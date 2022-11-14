@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Htpp\Controllers\EstudiantesController;
 use App\Http\Controllers\EstudiantesController as ControllersEstudiantesController;
+use App\Models\Espacio;
 
 class PagesController extends Controller
 {
@@ -61,7 +62,8 @@ class PagesController extends Controller
     public function lector(){
         if (Auth::check()) {
             $user = Auth::user();
-            return view('lector', ['tipo' => $user->tipo]);
+            $espacios = Espacio::all();
+            return view('lector', ['tipo' => $user->tipo, 'espacios'=>$espacios]);
         }
         else{
             return redirect(route('index'));

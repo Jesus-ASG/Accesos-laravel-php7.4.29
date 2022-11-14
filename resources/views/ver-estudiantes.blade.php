@@ -37,7 +37,11 @@
             <p>
                 {{ $a->fecha }}
                 {{ $a->hora }} 
-                {{ $a->lugar }} 
+                @if($a->espacio!=null)
+                {{ $a->espacio->nombre }}
+                @else
+                Espacio no definido
+                @endif
 
                 {{ $a->estudiante->no_lista }} {{ $a->estudiante->matricula }} {{ $a->estudiante->nombre }} {{ $a->estudiante->grupo }}
                 <hr>

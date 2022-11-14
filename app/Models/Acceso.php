@@ -16,4 +16,10 @@ class Acceso extends Model
         return $this->belongsTo(Estudiante::class);
     }
 
+    //Relación uno a muchos inversa
+    public function espacio(){
+        //Modelo, llave foránea (a la cual se hace referencia), llave primaria
+        return $this->belongsTo(Espacio::class);
+    }
+
 }
