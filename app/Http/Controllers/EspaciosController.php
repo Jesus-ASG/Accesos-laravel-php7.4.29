@@ -38,4 +38,24 @@ class EspaciosController extends Controller
         $espacio->delete();
         return redirect(route('espacios'));
     }
+
+    public function update(Request $request, Espacio $espacio){
+        $request->validate([
+            'nombre' => 'required',
+            'descripcion' => 'required',
+            'no_max_asistentes' => 'required',
+            'responsable' => 'required',
+            'academia' => 'required',
+        ]);
+
+        $espacio->nombre = $request->nombre;
+        $espacio->descripcion = $request->descripcion;
+        $espacio->no_max_asistentes = $request->no_max_asistentes;
+        $espacio->responsable = $request->responsable;
+        $espacio->academia = $request->academia;
+        
+        $espacio->save();
+        
+        return redirect(route('espacios'));
+    }
 }

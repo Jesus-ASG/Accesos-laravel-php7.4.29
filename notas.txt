@@ -64,3 +64,13 @@ public function down() // las cosas cuando se borre, es decir, quitar las nuevas
 
 hacer
 php artisan migrate
+
+
+
+---convenciones---
+index: mostrar
+store: guardar
+update: actualizar
+destroy: borrar
+edit: editar
+    

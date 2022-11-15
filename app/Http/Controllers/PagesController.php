@@ -31,9 +31,9 @@ class PagesController extends Controller
     }
 
     public function register(){
-        /* Eliminar estas 2 líneas cuando se instale */
+        /* Eliminar estas 2 líneas cuando se instale 
         $tipo = 1;
-        return view('register', ['logged'=>false, 'tipo' => $tipo]);
+        return view('register', ['logged'=>false, 'tipo' => $tipo]);*/
         /*  */
         if (Auth::check()) {
             $user = Auth::user();

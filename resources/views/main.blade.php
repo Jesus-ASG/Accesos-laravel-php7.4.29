@@ -22,7 +22,7 @@
         <div class="container-fluid">
             <div>
                 <a href="{{ route('index') }}" style="text-decoration: none;">
-                    <img src="img/LOGO-BUAP.jpg" height="80px" class="">
+                    <img src="img/logo-navbar.jpg" height="80px" class="navbar-img">
                 </a>
             </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">

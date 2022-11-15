@@ -19,6 +19,10 @@ body{
     background-color: var(--primary);
 }
 
+.navbar-img{
+    padding: 5px;
+}
+
 .navbar-item {
     margin: 10px;
 }
@@ -34,13 +38,16 @@ body{
 /* Lector de código de barras*/
 
 .fs1{
-    font-size: 2.3rem!important;
+    font-size: 2.2rem!important;
 }
 .fs2{
     font-size: 1.8rem!important;
 }
 .fs3{
     font-size: 1.2rem!important;
+}
+.fs4{
+    font-size: 1rem!important;
 }
 
 .container-acceso{
@@ -115,14 +122,32 @@ body{
     color: red;
 }
 
-@media only screen and (max-width: 600px){
+@media only screen and (max-width: 730px){
 	.fs1{
-        font-size: 2rem!important;
+        font-size: 1.8rem!important;
     }
     .fs2{
         font-size: 1.3rem!important;
     }
     .fs3{
         font-size: 1rem!important;
+    }
+    .fs4{
+        font-size: 0.9rem!important;
+    }
+}
+
+@media only screen and (max-width: 520px){
+	.fs1{
+        font-size: 1.6rem!important;
+    }
+    .fs2{
+        font-size: 1rem!important;
+    }
+    .fs3{
+        font-size: 0.8rem!important;
+    }
+    .fs4{
+        font-size: 0.8rem!important;
     }
 }
