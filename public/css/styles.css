@@ -1,3 +1,13 @@
+:root{
+    --primary: #002d4c;
+    --primary_light: #00b4e1;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+}
+
 /* Generales */
 .centrado{
     align-items: center;
@@ -6,7 +16,7 @@
 
 /* Plantilla principal */
 .bg-navbar{
-    background-color: #032a4c;
+    background-color: var(--primary);
 }
 
 .navbar-item {
@@ -22,12 +32,61 @@
 }
 
 /* Lector de código de barras*/
-.input-matricula{
-    border: 1px solid #032a4c;
-    border-radius: 10px;
-    padding: 10px 20px 10px 20px;
-    margin: 10px;
+
+.fs1{
+    font-size: 2.3rem!important;
 }
+.fs2{
+    font-size: 1.8rem!important;
+}
+.fs3{
+    font-size: 1.2rem!important;
+}
+
+.container-acceso{
+    display: inline-block;
+    width: 80%;
+    max-width: 300px;
+    min-width: 150px;
+    border: 3px solid var(--primary); 
+    background: var(--primary_light);
+    -webkit-transform: skew(-30deg);
+    -moz-transform: skew(-30deg);
+    -ms-transform: skew(-30deg);
+    -o-transform: skew(-30deg);
+    transform: skew(-30deg);
+}
+.container-acceso p{
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    font-weight: bold;
+    -webkit-transform: skew(30deg);
+    -moz-transform: skew(30deg);
+    -ms-transform: skew(30deg);
+    -o-transform: skew(30deg);
+    transform: skew(30deg);
+   
+}
+
+.input-matricula{
+    border: 1px solid var(--primary);
+    border-radius: 10px;
+    width: 100%;
+}
+
+.politica-privacidad a{
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--primary_light);
+}
+
+.politica-privacidad a:hover{
+    font-weight: bold;
+    text-decoration: underline;
+    color: var(--primary_light);
+}
+
 
 .input-inicio-sesion{
     border: 1px solid #032a4c;
@@ -37,10 +96,16 @@
 }
 
 .btn-entrar{
-    background-color: #075ba5;
-    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--primary)!important;
+    font-weight: bold!important;
+    min-width: 200px;
     color: white;
 }
+
+.btn-entrar:hover{
+    background-color: var(--primary_light)!important;
+}
+
 
 .container-entrada{
     align-items: center;
@@ -50,3 +115,14 @@
     color: red;
 }
 
+@media only screen and (max-width: 600px){
+	.fs1{
+        font-size: 2rem!important;
+    }
+    .fs2{
+        font-size: 1.3rem!important;
+    }
+    .fs3{
+        font-size: 1rem!important;
+    }
+}

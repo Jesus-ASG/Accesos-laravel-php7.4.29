@@ -26,3 +26,5 @@ Route::get('/espacios', [EspaciosController::class, 'index']) -> name('espacios'
 
 Route::get('ver-estudiantes', [EstudiantesController::class, 'index']) -> name('ver-estudiantes');
 
+Route::get('politicas', [PagesController::class, 'politicas']) -> name('politicas');
+

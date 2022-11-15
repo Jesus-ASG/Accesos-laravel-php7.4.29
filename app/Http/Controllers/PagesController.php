@@ -46,12 +46,24 @@ class PagesController extends Controller
     public function lector(){
         if (Auth::check()) {
             $user = Auth::user();
-            $espacios = Espacio::all();
+            $espacios = Espacio::orderBy('nombre')->get();
             return view('lector', ['logged'=>true, 'tipo' => $user->tipo, 'espacios'=>$espacios]);
         }
         else{
             return redirect(route('index'));
         }
+    }
+
+    public function politicas(){
+        if (Auth::check()) {
+            $user = Auth::user();
+            $espacios = Espacio::orderBy('nombre')->get();
+            return view('politicas', ['logged'=>true, 'tipo' => $user->tipo]);
+        }
+        else{
+            return redirect(route('index'));
+        }
+        
     }
 
 }
