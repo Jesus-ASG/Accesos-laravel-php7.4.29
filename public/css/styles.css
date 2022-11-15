@@ -104,8 +104,7 @@ body{
 
 .btn-entrar{
     background-color: var(--primary)!important;
-    font-weight: bold!important;
-    min-width: 200px;
+    
     color: white;
 }
 

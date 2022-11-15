@@ -40,7 +40,7 @@
                         </a>
                     </span>
                 </div>
-                <button class="btn btn-primary btn-entrar fs3">Entrar</button>
+                <button class="btn btn-primary btn-entrar fs3 fw-bold w-25">Entrar</button>
             </form>
 
             @if (session('success'))

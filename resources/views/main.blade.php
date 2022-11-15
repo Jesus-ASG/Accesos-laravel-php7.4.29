@@ -10,6 +10,8 @@
 
     <!-- Estilos propios -->
     <link rel="stylesheet" href="css/styles.css">
+    <!-- Estilos de página -->
+    @yield('page_styles')
     <!--Bootstrap-->
     <link rel="stylesheet" href="bootstrap-5.0.2-dist/css/bootstrap.css">
     <!-- Íconos -->

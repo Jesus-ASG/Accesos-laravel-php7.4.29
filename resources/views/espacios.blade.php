@@ -4,6 +4,14 @@
     Accesos
 @endsection
 
+@section('page_styles')
+<style>
+    .form-label-bold label{
+        font-weight: bold;
+    }
+</style>
+@endsection
+
 @section('contenido')
     <div class="row">
 
@@ -38,7 +46,7 @@
                                 </td>
                                 <td><input type="text" class="form-control fs4" name="academia" placeholder="Academia">
                                 </td>
-                                <td><button class="btn btn-success"><i class="fa-solid fa-plus"></i></button></td>
+                                <td><button class="btn btn-success" title="Agregar"><i class="fa-solid fa-plus"></i></button></td>
                             </form>
                         </tr>
 
@@ -52,22 +60,22 @@
                                 <td class="fs4">
                                     <!-- Modal para editar-->
                                     <div>
-                                        <button class="btn btn-info" href="#" type="button" title="Editar"
-                                            data-bs-toggle="modal" data-bs-target="#modal_edit">
-                                            <i class="fa-solid fa-pen"></i>
+                                        <button class="btn btn-info btn-entrar" href="#" type="button" title="Editar"
+                                            data-bs-toggle="modal" data-bs-target="#modal_edit_{{ $e->id }}">
+                                            <i class='fa-solid fa-pen' style='color: white'></i>
                                         </button>
-                                        <div class="modal fade" id="modal_edit" tabindex="-1"
+                                        <div class="modal fade" id="modal_edit_{{ $e->id }}" tabindex="-1"
                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title">Editar espacio</h5>
+                                                        <h5 class="modal-title  col-11 text-center">Editar espacio</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="close"></button>
                                                     </div>
                                                     <div class="modal-body">
                                                         <form action="{{ route('espacios.update', $e) }}" autocomplete="off"
-                                                            method="POST" id="form_editar">
+                                                            method="POST" id="form_editar_{{ $e->id }}" class="form-label-bold">
                                                             @csrf
                                                             @method('put')
                                                             <div class="mb-2">
@@ -106,9 +114,9 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Cerrar</button>
-                                                        <button type="submit" class="btn btn-primary"
-                                                            form="form_editar">Guardar
+                                                            data-bs-dismiss="modal">Cancelar</button>
+                                                        <button type="submit" class="btn btn-primary btn-entrar"
+                                                            form="form_editar_{{ $e->id }}">Guardar
                                                             cambios</button>
                                                     </div>
                                                 </div>
@@ -120,15 +128,15 @@
                                     <!-- modal para borrar -->
                                     <div>
                                         <button class="btn btn-danger" href="#" type="button" title="Eliminar"
-                                            data-bs-toggle="modal" data-bs-target="#modal_delete">
+                                            data-bs-toggle="modal" data-bs-target="#modal_delete_{{ $e->id }}">
                                             <i class="fa-solid fa-trash"></i>
                                         </button>
-                                        <div class="modal fade" id="modal_delete" tabindex="-1"
+                                        <div class="modal fade" id="modal_delete_{{ $e->id }}" tabindex="-1"
                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title">¿Desea eliminar el espacio
+                                                        <h5 class="modal-title  col-11 text-center">¿Desea eliminar el espacio: <br>
                                                             "{{ $e->nombre }}"?</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="close"></button>
@@ -136,7 +144,7 @@
 
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Cerrar</button>
+                                                            data-bs-dismiss="modal">Cancelar</button>
                                                         <form action="{{ route('espacios.destroy', $e) }}"
                                                             autocomplete="off" method="POST">
                                                             @csrf
@@ -150,9 +158,6 @@
                                             </div>
                                         </div>
                                     </div>
-
-
-
                                 </td>
                             </tr>
                         @endforeach
