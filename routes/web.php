@@ -23,6 +23,8 @@ Route::get('/lector', [PagesController::class, 'lector']) -> name('lector');
 Route::post('/lector', [AccesosController::class, 'store']) -> name('lector');
 
 Route::get('/espacios', [EspaciosController::class, 'index']) -> name('espacios');
+Route::post('/espacios', [EspaciosController::class, 'store']) -> name('espacios.store');
+Route::delete('/espacios/{espacio}', [EspaciosController::class, 'destroy']) -> name('espacios.destroy');
 
 Route::get('ver-estudiantes', [EstudiantesController::class, 'index']) -> name('ver-estudiantes');
 
