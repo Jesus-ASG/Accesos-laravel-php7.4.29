@@ -19,7 +19,7 @@ Route::get('/logout', [LoginController::class, 'logout']) -> name('logout');
 Route::get('index_usuario', [PagesController::class, 'logged']) -> name('logged');
 Route::get('index_admin', [PagesController::class, 'logged_admin'])->name('logged_admin');
 
-Route::get('/lector', [PagesController::class, 'lector']) -> name('lector');
+Route::get('/lector', [AccesosController::class, 'index']) -> name('lector');
 Route::post('/lector', [AccesosController::class, 'store']) -> name('lector');
 
 Route::get('/espacios', [EspaciosController::class, 'index']) -> name('espacios');

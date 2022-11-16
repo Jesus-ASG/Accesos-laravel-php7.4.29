@@ -73,4 +73,13 @@ store: guardar
 update: actualizar
 destroy: borrar
 edit: editar
-    
+
+hacer responsiva la vista del login =
+avisar si se registró correctamente un nuevo usuario ===
+dar posibilidad de registrar como administrador =
+cambiar contraseña ===
+ver middleware para las rutas ====
+
+agregar funcion de filtros en tiempo real ====
+
+componer página de políticas de privacidad ==

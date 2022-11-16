@@ -27,6 +27,5 @@ class EstudiantesController extends Controller
         else{
             return redirect(route('index'));
         }
-        
     }
 }

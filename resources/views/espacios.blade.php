@@ -15,7 +15,7 @@
 @section('contenido')
     <div class="row">
 
-        <div class="card">
+        <div class="card table-responsive">
 
             <div class="card-body">
                 <h4 class="card-title">Espacios</h4>

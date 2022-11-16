@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Acceso;
 use App\Models\Espacio;
 use App\Models\Estudiante;
@@ -19,6 +20,18 @@ use Illuminate\Support\Facades\DB;
 
 class AccesosController extends Controller
 {
+    public function index()
+    {
+        if (Auth::check()) {
+            $user = Auth::user();
+            $espacios = Espacio::orderBy('nombre')->get(); // para seleccionar espacio
+            return view('lector', ['logged'=>true, 'tipo' => $user->tipo, 'espacios'=>$espacios]);
+        }
+        else{
+            return redirect(route('index'));
+        }
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -42,8 +55,5 @@ class AccesosController extends Controller
         return redirect()->route('lector')->with('m_not_found', 'La matricula "' . $request->matricula . '" no fue encontrada');        
     }
 
-    public function index()
-    {
-        $accesos = Acceso::all();
-    }
+    
 }

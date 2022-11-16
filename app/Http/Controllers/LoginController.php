@@ -38,9 +38,13 @@ class LoginController extends Controller
             'ape_p' => 'required',
             'ape_m' => 'required',
             'txtpassword' => 'required',
+            'txtpassword2' => 'required',
         ]);
 
         $user = new User();
+        if($request->txtpassword != $request->txtpassword2){
+            return redirect(route('register'));
+        }
 
         $user->matricula = $request->mat;
         $user->nombre = $request->name;
