@@ -28,6 +28,7 @@ Route::delete('/espacios/{espacio}', [EspaciosController::class, 'destroy']) -> 
 Route::put('/espacios/{espacio}', [EspaciosController::class, 'update']) -> name('espacios.update');
 
 Route::get('ver-estudiantes', [EstudiantesController::class, 'index']) -> name('ver-estudiantes');
+Route::post('ver-estudiantes', [EstudiantesController::class, 'filter']) -> name('ver-estudiantes.filter');
 
 Route::get('politicas', [PagesController::class, 'politicas']) -> name('politicas');
 

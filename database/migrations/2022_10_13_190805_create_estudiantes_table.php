@@ -18,7 +18,9 @@ return new class extends Migration
             $table->integer('no_lista');
             $table->string('matricula')->unique();
             $table->string('nombre');
+            $table->string('grado');
             $table->string('grupo');
+            $table->string('turno');
         });
     }
 

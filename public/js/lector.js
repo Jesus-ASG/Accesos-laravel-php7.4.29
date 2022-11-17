@@ -20,8 +20,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function saveSelectedOption(){
     let espacio = document.getElementById("espacio");
-    if(espacio.options.length<=0)
-        return
+    if(espacio.options.length<=0){
+        document.getElementById("btn_leer_entrada").disabled = true;
+        return;
+    }
+    document.getElementById("btn_leer_entrada").disabled = false;
+    
     // si existe una variable en localStorage
     let espacio_selected = localStorage.getItem("espacio_selected");
     if(espacio_selected){

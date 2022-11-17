@@ -44,6 +44,8 @@
 
     <!-- Footer -->
 
+    <!-- Scripts propios -->
+    @yield('page_scripts')
     <!-- Bootstrap script -->
     <script src="bootstrap-5.0.2-dist/js/bootstrap.js"></script>
 
