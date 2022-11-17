@@ -5,6 +5,7 @@
 @endsection
 
 @section('contenido')
+<input type="text" value="{{ $m_get }}" id="m_get" hidden>
     <div class="container border mt-5">
         <div>
             <form action="{{ route('ver-estudiantes.filter') }}" autocomplete="off" method="POST">
@@ -54,7 +55,7 @@
                         <input type="date" class="form-control" name="fecha" id="fe_fecha">
                     </div>
                     <div class="col-12 col-lg-2">
-                        <button class="btn btn-info" type="submit" id="btn_filtrar">Filtrar</button>
+                        <button class="btn btn-info" type="submit" id="btn_filtrar" style="display: none">Filtrar</button>
                     </div>
                 </div>
             </form>
@@ -89,7 +90,82 @@
                             <td>{{ $a->estudiante->nombre }}</td>
                             <td>{{ $a->estudiante->grado }}</td>
                             <td>{{ $a->estudiante->grupo }}</td>
-                            <td><i class="fa fa-info-circle" aria-hidden="true"></i></td>
+                            <td>
+                                <div>
+                                    <button class="btn btn-info btn-entrar" href="#" type="button" title="Ver más"
+                                        data-bs-toggle="modal" data-bs-target="#modal_info_{{ $a->id }}">
+                                        <i class="fa fa-info-circle" style='color: white' aria-hidden="true"></i>
+                                    </button>
+                                    <div class="modal fade" id="modal_info_{{ $a->id }}" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title c-primary col-11 text-center fw-bold">Información detallada</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row text-center">
+                                                        <div class="col-3">
+                                                            <p>
+                                                                <span class="fw-bold c-primary">Turno:</span> 
+                                                                {{ $a->estudiante->turno }}
+                                                            </p>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <p>
+                                                                <span class="fw-bold c-primary">Grado:</span> 
+                                                                {{ $a->estudiante->grado }}
+                                                            </p>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <p>
+                                                                <span class="fw-bold c-primary">Grupo:</span> 
+                                                                {{ $a->estudiante->grupo }}
+                                                            </p>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <p>
+                                                                <span class="fw-bold c-primary">NL:</span> 
+                                                                {{ $a->estudiante->no_lista }}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row mb-2 text-start">
+                                                        <div class="col-4">
+                                                            <p><span class="fw-bold c-primary">Matrícula:</span> <br> {{ $a->estudiante->matricula }}</p>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <p><span class="fw-bold c-primary">Nombre:</span> <br> {{ $a->estudiante->nombre }}</p>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+
+                                                    <div class="row mb-2">
+                                                        <div class="col-6">
+                                                            <p><span class="fw-bold c-primary">Acceso:</span> <br> {{ $a->espacio->nombre }}</p>
+                                                        </div>
+                                                        <div class="col-3 text-center">
+                                                            <p><span class="fw-bold c-primary">Fecha:</span> <br> {{ $a->fecha }}</p>
+                                                        </div>
+                                                        <div class="col-3 text-center">
+                                                            <p><span class="fw-bold c-primary">Hora:</span> <br> {{ $a->hora }}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Cerrar</button>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

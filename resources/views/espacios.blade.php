@@ -69,7 +69,7 @@
                                             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title  col-11 text-center">Editar espacio</h5>
+                                                        <h5 class="modal-title c-primary col-11 text-center fw-bold">Editar espacio</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="close"></button>
                                                     </div>
@@ -79,19 +79,19 @@
                                                             @csrf
                                                             @method('put')
                                                             <div class="mb-2">
-                                                                <label for="nombre" class="form-label">Nombre</label>
+                                                                <label for="nombre" class="form-label c-primary">Nombre</label>
                                                                 <input type="text" class="form-control" name="nombre"
                                                                     placeholder="Nombre" value="{{ $e->nombre }}">
                                                             </div>
                                                             <div class="mb-2">
                                                                 <label for="descripcion"
-                                                                    class="form-label">Descripción</label>
+                                                                    class="form-label c-primary">Descripción</label>
                                                                 <input type="text" class="form-control"
                                                                     name="descripcion" placeholder="Descripción"
                                                                     value="{{ $e->descripcion }}">
                                                             </div>
                                                             <div class="mb-2">
-                                                                <label for="no_max_asistentes" class="form-label">Máximo de
+                                                                <label for="no_max_asistentes" class="form-label c-primary">Máximo de
                                                                     asistentes</label>
                                                                 <input type="number" class="form-control"
                                                                     name="no_max_asistentes" placeholder="No. asistentes"
@@ -99,13 +99,13 @@
                                                             </div>
                                                             <div class="mb-2">
                                                                 <label for="responsable"
-                                                                    class="form-label">Responsable</label>
+                                                                    class="form-label c-primary">Responsable</label>
                                                                 <input type="text" class="form-control"
                                                                     name="responsable" placeholder="Responsable"
                                                                     value="{{ $e->responsable }}">
                                                             </div>
                                                             <div class="mb-2">
-                                                                <label for="academia" class="form-label">Academia</label>
+                                                                <label for="academia" class="form-label c-primary">Academia</label>
                                                                 <input type="text" class="form-control"
                                                                     name="academia" placeholder="Academia"
                                                                     value="{{ $e->academia }}">

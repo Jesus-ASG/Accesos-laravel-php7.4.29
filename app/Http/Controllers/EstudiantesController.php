@@ -22,11 +22,10 @@ class EstudiantesController extends Controller
         if (Auth::check()) {
             $user = Auth::user();
             $espacios = Espacio::orderBy('nombre')->get(); // para seleccionar espacio
-            $accesos = Acceso::where('fecha', Carbon::now()->toDateString())->get();
-            //$accesos = Estudiante::with('accesos')->get();
+            $accesos = Acceso::where('fecha', '')->get();
 
             return view('ver-estudiantes', ['logged'=>true, 'accesos' => $accesos, 
-                'tipo' => $user->tipo, 'espacios'=>$espacios]);
+                'tipo' => $user->tipo, 'espacios'=>$espacios, 'm_get'=>true]);
         }
         else{
             return redirect(route('index'));
@@ -75,7 +74,7 @@ class EstudiantesController extends Controller
 
 
             return view('ver-estudiantes', ['logged'=>true, 'accesos' => $accesos, 
-                'tipo' => $user->tipo, 'espacios'=>$espacios]);
+                'tipo' => $user->tipo, 'espacios'=>$espacios, 'm_get'=>false]);
                 
         }
         else{
