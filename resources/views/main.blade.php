@@ -18,7 +18,7 @@
     <script src="https://kit.fontawesome.com/f4ecb098da.js" crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body id="body_id">
     <!-- Navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-navbar">
         <div class="container-fluid">

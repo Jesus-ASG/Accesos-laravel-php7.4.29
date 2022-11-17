@@ -8,6 +8,14 @@ document.addEventListener("DOMContentLoaded", function() {
     // poner título acorde a la selección actual
     ponerTitulo();
 
+    // funcion para que ponga el foco en el input cada que se presiona tecla
+    var body = document.getElementById("body_id");
+    body.addEventListener("keydown", function (e){
+        let m1 = document.getElementById("input_matricula");
+        m1.focus();
+    });
+
+
 });
 
 function saveSelectedOption(){
