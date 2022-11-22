@@ -8,6 +8,7 @@
 <input type="text" value="{{ $m_get }}" id="m_get" hidden>
     <div class="container border mt-5">
         <div>
+            
             <form action="{{ route('ver-estudiantes.filter') }}" autocomplete="off" method="POST">
                 @csrf
                 <div class="row">
@@ -54,14 +55,17 @@
                         <label class="form-label">Fecha</label>
                         <input type="date" class="form-control" name="fecha" id="fe_fecha">
                     </div>
-                    <div class="col-12 col-lg-2">
-                        <button class="btn btn-info" type="submit" id="btn_filtrar" style="display: none">Filtrar</button>
+                    
+                    <div class="col-12 col-lg-2 text-end">
+                        <a class="btn btn-info btn-entrar mt-3" style="color: #fff" onclick="sendFilterRequest()" id="btn_filtrar">
+                            <i class="fa fa-refresh" aria-hidden="true"></i>
+                        </a>
                     </div>
                 </div>
             </form>
         </div>
         <div class="table-responsive mt-4">
-            <table class="table w-100">
+            <table class="table w-100" id="tabla_estudiantes">
                 <thead>
                     <tr>
                         <td scope="col">
@@ -83,20 +87,59 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($accesos as $a)
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+@endsection
+
+@section('page_scripts')
+    <script src="js/ver-estudiantes.js"></script>
+    <script>
+        $(document).ready(function(){
+            sendFilterRequest();
+
+            //setInterval(function(){sendFilterRequest();},2000);
+        });
+        function sendFilterRequest(){
+            let turno = $("#fe_turno").val();
+            let grado = $("#fe_grado").val();
+            let grupo = $("#fe_grupo").val();
+            let espacio = $("#fe_espacio").val();
+            let fecha = $("#fe_fecha").val();
+
+            $.ajax({
+                url: "{{ url('ver_estudiantes') }}",
+                method: "POST",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="crsf-token"]').attr('content') 
+                },
+                data: {
+                    "_token": $("meta[name='csrf-token']").attr("content"),
+                    'turno': turno,
+                    'grado': grado,
+                    'grupo': grupo,
+                    'espacio': espacio,
+                    'fecha': fecha
+                },
+                success: function(accesos){
+                    let x = ``;
+                    for(let a of accesos){
+                        x += `
                         <tr>
-                            <td>{{ $a->hora }} </td>
-                            <td>{{ $a->estudiante->matricula }} </td>
-                            <td>{{ $a->estudiante->nombre }}</td>
-                            <td>{{ $a->estudiante->grado }}</td>
-                            <td>{{ $a->estudiante->grupo }}</td>
+                            <td> `+a.hora+` </td>
+                            <td>`+a.estudiante.matricula+` </td>
+                            <td>`+a.estudiante.nombre+`</td>
+                            <td>`+a.estudiante.grado+`</td>
+                            <td>`+a.estudiante.grupo+`</td>
                             <td>
                                 <div>
                                     <button class="btn btn-info btn-entrar" href="#" type="button" title="Ver más"
-                                        data-bs-toggle="modal" data-bs-target="#modal_info_{{ $a->id }}">
+                                        data-bs-toggle="modal" data-bs-target="#modal_info_`+a.id+`">
                                         <i class="fa fa-info-circle" style='color: white' aria-hidden="true"></i>
                                     </button>
-                                    <div class="modal fade" id="modal_info_{{ $a->id }}" tabindex="-1"
+                                    <div class="modal fade" id="modal_info_`+a.id+`" tabindex="-1"
                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                             <div class="modal-content">
@@ -110,70 +153,67 @@
                                                         <div class="col-3">
                                                             <p>
                                                                 <span class="fw-bold c-primary">Turno:</span> 
-                                                                {{ $a->estudiante->turno }}
+                                                                `+a.estudiante.turno+`
                                                             </p>
                                                         </div>
                                                         <div class="col-3">
                                                             <p>
                                                                 <span class="fw-bold c-primary">Grado:</span> 
-                                                                {{ $a->estudiante->grado }}
+                                                                `+a.estudiante.grado+`
                                                             </p>
                                                         </div>
                                                         <div class="col-3">
                                                             <p>
                                                                 <span class="fw-bold c-primary">Grupo:</span> 
-                                                                {{ $a->estudiante->grupo }}
+                                                                `+a.estudiante.grupo+`
                                                             </p>
                                                         </div>
                                                         <div class="col-3">
                                                             <p>
                                                                 <span class="fw-bold c-primary">NL:</span> 
-                                                                {{ $a->estudiante->no_lista }}
+                                                                `+a.estudiante.no_lista+`
                                                             </p>
                                                         </div>
                                                     </div>
 
                                                     <div class="row mb-2 text-start">
                                                         <div class="col-4">
-                                                            <p><span class="fw-bold c-primary">Matrícula:</span> <br> {{ $a->estudiante->matricula }}</p>
+                                                            <p><span class="fw-bold c-primary">Matrícula:</span> <br> `+a.estudiante.matricula+`</p>
                                                         </div>
                                                         <div class="col-8">
-                                                            <p><span class="fw-bold c-primary">Nombre:</span> <br> {{ $a->estudiante->nombre }}</p>
+                                                            <p><span class="fw-bold c-primary">Nombre:</span> <br> `+a.estudiante.nombre+`</p>
                                                         </div>
                                                     </div>
                                                     <hr>
 
                                                     <div class="row mb-2">
                                                         <div class="col-6">
-                                                            <p><span class="fw-bold c-primary">Acceso:</span> <br> {{ $a->espacio->nombre }}</p>
+                                                            <p><span class="fw-bold c-primary">Acceso:</span> <br> `+a.espacio.nombre+`</p>
                                                         </div>
                                                         <div class="col-3 text-center">
-                                                            <p><span class="fw-bold c-primary">Fecha:</span> <br> {{ $a->fecha }}</p>
+                                                            <p><span class="fw-bold c-primary">Fecha:</span> <br> `+a.fecha+`</p>
                                                         </div>
                                                         <div class="col-3 text-center">
-                                                            <p><span class="fw-bold c-primary">Hora:</span> <br> {{ $a->hora }}</p>
+                                                            <p><span class="fw-bold c-primary">Hora:</span> <br> `+a.hora+`</p>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
                                                         data-bs-dismiss="modal">Cerrar</button>
-                                                    
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                
                             </td>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
-@endsection
-
-@section('page_scripts')
-    <script src="js/ver-estudiantes.js"></script>
+                        `;
+                    }
+                    document.querySelector('#tabla_estudiantes tbody').innerHTML = x;
+                }
+            });
+        }
+        
+    </script>
 @endsection

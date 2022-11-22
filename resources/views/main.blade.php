@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" href="img/logo.png">
+    <!-- Para peticiones de ajax -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title> @yield('titulo') </title>
 
     <!-- Estilos propios -->
@@ -43,14 +45,12 @@
     </div>
 
     <!-- Footer -->
-
-    <!-- Scripts propios -->
-    @yield('page_scripts')
     <!-- Bootstrap script -->
     <script src="bootstrap-5.0.2-dist/js/bootstrap.js"></script>
-
-    <!-- Para on document ready -->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/cesiumjs/1.78/Build/Cesium/Cesium.js"></script>
+    <!-- Scripts propios -->
+    @yield('page_scripts')
 </body>
 
 </html>

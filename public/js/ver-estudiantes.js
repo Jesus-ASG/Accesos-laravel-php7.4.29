@@ -14,9 +14,9 @@ document.addEventListener("DOMContentLoaded", function() {
     // Cargar los datos según el formulario de filtros
     //$("#btn_filtrar").click();
     //document.getElementById("btn_filtrar").click();
-    if(document.getElementById("m_get").value){
-        document.getElementById("btn_filtrar").click();
-    }
+    //if(document.getElementById("m_get").value){
+      //  document.getElementById("btn_filtrar").click();
+    //}
     
 });
 

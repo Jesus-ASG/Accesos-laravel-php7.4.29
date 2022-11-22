@@ -19,67 +19,55 @@ use App\Models\Espacio;
 class EstudiantesController extends Controller
 {
     public function index(){
-        if (Auth::check()) {
-            $user = Auth::user();
-            $espacios = Espacio::orderBy('nombre')->get(); // para seleccionar espacio
-            $accesos = Acceso::where('fecha', '')->get();
+        $user = Auth::user();
+        $espacios = Espacio::orderBy('nombre')->get(); // para seleccionar espacio
+        $accesos = Acceso::where('fecha', '')->get();
 
-            return view('ver-estudiantes', ['logged'=>true, 'accesos' => $accesos, 
-                'tipo' => $user->tipo, 'espacios'=>$espacios, 'm_get'=>true]);
-        }
-        else{
-            return redirect(route('index'));
-        }
+        return view('ver-estudiantes', ['logged'=>true, 'accesos' => $accesos, 
+            'tipo' => $user->tipo, 'espacios'=>$espacios, 'm_get'=>true]);
+        
     }
 
     public function filter(Request $request){
-        if (Auth::check()) {
-            $user = Auth::user();
-            $espacios = Espacio::orderBy('nombre')->get();
+        $user = Auth::user();
+        $espacios = Espacio::orderBy('nombre')->get();
 
-            // validar
-            $request->validate([
-                'turno' => 'required',
-                'grado' => 'required',
-                'grupo' => 'required',
-                'espacio' => 'required',
-                'fecha' => 'required'
-            ]);
+        // validar
+        $request->validate([
+            'turno' => 'required',
+            'grado' => 'required',
+            'grupo' => 'required',
+            'espacio' => 'required'
+        ]);
+        $accesos = Acceso::with('estudiante', 'espacio')->where([
 
-            $accesos = Acceso::where([
-
-                ['espacio_id', $request->espacio],
-                ['fecha', $request->fecha],
-                
-                ])->whereHas('estudiante', function($query) use ($request){
-                    if(($request->turno != 'all'))
-                        $query->where('turno', $request->turno);
-                    
-                    if(($request->grado != 'all'))
-                        $query->where('grado', $request->grado);
-                    
-                    if(($request->grupo != 'all'))
-                        $query->where('grupo', $request->grupo);
-                    /*
-                    $query->where([
-                        ['turno', $request->turno],
-                        ['grado', $request->grado],
-                        ['grupo', $request->grupo]
-                    ]);*/
-                    
-                    
-                    
-            })->get();
+            ['espacio_id', $request->espacio],
+            ['fecha', $request->fecha],
             
-
-
-            return view('ver-estudiantes', ['logged'=>true, 'accesos' => $accesos, 
-                'tipo' => $user->tipo, 'espacios'=>$espacios, 'm_get'=>false]);
+            ])->whereHas('estudiante', function($query) use ($request){
+                if(($request->turno != 'all'))
+                    $query->where('turno', $request->turno);
                 
-        }
-        else{
-            return redirect(route('index'));
-        }
+                if(($request->grado != 'all'))
+                    $query->where('grado', $request->grado);
+                
+                if(($request->grupo != 'all'))
+                    $query->where('grupo', $request->grupo);
+                /*
+                $query->where([
+                    ['turno', $request->turno],
+                    ['grado', $request->grado],
+                    ['grupo', $request->grupo]
+                ]);*/
+                
+        })->get();
+        
+        //return view('ver-estudiantes', ['logged'=>true, 'accesos' => $accesos, 
+            //  'tipo' => $user->tipo, 'espacios'=>$espacios, 'm_get'=>false]);
+        return response()->json($accesos);
+        //return Response::json($accesos);
+                
+        
     }
 
 }

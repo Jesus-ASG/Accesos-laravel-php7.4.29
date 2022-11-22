@@ -33,14 +33,15 @@ class PagesController extends Controller
     public function register(){
         //Eliminar estas 2 líneas cuando se instale 
         $tipo = 1;
-        return view('register', ['logged'=>false, 'tipo' => $tipo]);
+        $logged = false;
+        //return view('register', ['logged'=>false, 'tipo' => $tipo]);
         /*  */
-        if (Auth::check()) {
+        if (Auth::user()){
             $user = Auth::user();
-            if($user->tipo==0)
-                return view('register', ['logged'=>true, 'tipo' => $user->tipo]);
+            $tipo = $user->tipo;
+            $logged = true;
         }
-        return redirect(route('index'));
+        return view('register', ['logged'=>$logged, 'tipo' => $tipo]);
     }
 
     public function politicas(){

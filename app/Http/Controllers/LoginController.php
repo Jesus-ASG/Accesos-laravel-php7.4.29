@@ -25,7 +25,7 @@ class LoginController extends Controller
         else
         {
             $user = Auth::user();
-            return redirect()->intended(route('index'));
+            return redirect()->intended(route('lector'));
             //return $this->validation($user);
         }
     }
@@ -39,7 +39,17 @@ class LoginController extends Controller
             'ape_m' => 'required',
             'txtpassword' => 'required',
             'txtpassword2' => 'required',
+            'key' => 'required'
         ]);
+        
+        
+        
+        if ($request->key == env('SECURITY_KEY'))
+            $user->tipo = 1;
+        else if($request->key == env('SECURITY_KEY_ADMIN'))
+            $user->tipo = 0;
+        else
+            return redirect(route('register'));
 
         $user = new User();
         if($request->txtpassword != $request->txtpassword2){
@@ -51,12 +61,13 @@ class LoginController extends Controller
         $user->apellido_p = $request->ape_p;
         $user->apellido_m = $request->ape_m;
         $user->password = $request->txtpassword;
-        $user->tipo = 1;
+        
 
         $user->save();
+        if (!Auth::check()) {
+            Auth::login($user);
+        }
         
-        Auth::login($user);
-
         return redirect(route('lector'));
     }
 

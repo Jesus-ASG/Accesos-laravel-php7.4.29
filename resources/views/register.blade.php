@@ -47,6 +47,23 @@
                         placeholder="Repetir contraseña">
                 </div>
             </div>
+            <div class="row mb-2 px-2">
+                <div class="col-12 text-center">
+                    <label for="key" class="form-label">Ingrese la llave de seguridad</label>
+                    <input type="text", class="form-control input-inicio-sesion" id="key" name="key"
+                        placeholder="Llave de seguridad">
+                </div>
+            </div>
+            <!--
+            <div class="row mb-2 px-2">
+                <div class="col-12 text-center">
+                    <input class="form-check-input" type="checkbox" value="" id="tipo" name="tipo">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Marque esta casilla si desea que el usuario pueda modificar y eliminar accesos
+                    </label>
+                </div>
+            </div>
+            -->
             <div class="centrado">
                 <button type="submit" class="btn btn-primary btn-entrar w-25">Registrar</button>
             </div>

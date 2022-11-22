@@ -22,14 +22,10 @@ class AccesosController extends Controller
 {
     public function index()
     {
-        if (Auth::check()) {
-            $user = Auth::user();
-            $espacios = Espacio::orderBy('nombre')->get(); // para seleccionar espacio
-            return view('lector', ['logged'=>true, 'tipo' => $user->tipo, 'espacios'=>$espacios]);
-        }
-        else{
-            return redirect(route('index'));
-        }
+        $user = Auth::user();
+        $espacios = Espacio::orderBy('nombre')->get(); // para seleccionar espacio
+        return view('lector', ['logged'=>true, 'tipo' => $user->tipo, 'espacios'=>$espacios]);
+        
     }
 
     public function store(Request $request)
