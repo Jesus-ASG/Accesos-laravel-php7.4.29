@@ -42,16 +42,14 @@ class LoginController extends Controller
             'key' => 'required'
         ]);
         
-        
-        
+        $user = new User();
         if ($request->key == env('SECURITY_KEY'))
             $user->tipo = 1;
         else if($request->key == env('SECURITY_KEY_ADMIN'))
             $user->tipo = 0;
         else
             return redirect(route('register'));
-
-        $user = new User();
+        
         if($request->txtpassword != $request->txtpassword2){
             return redirect(route('register'));
         }

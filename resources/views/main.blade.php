@@ -32,10 +32,10 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                @includeWhen($logged, 'navbar-controlls.user')
-                @includeUnless($logged, 'navbar-controlls.guest')
-            </div>
+            @includeWhen($logged, 'navbar-controlls.user')
+            @includeUnless($logged, 'navbar-controlls.guest')
+            
+            
         </div>
     </nav>
 

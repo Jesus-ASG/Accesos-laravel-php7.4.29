@@ -53,21 +53,10 @@ class EstudiantesController extends Controller
                 
                 if(($request->grupo != 'all'))
                     $query->where('grupo', $request->grupo);
-                /*
-                $query->where([
-                    ['turno', $request->turno],
-                    ['grado', $request->grado],
-                    ['grupo', $request->grupo]
-                ]);*/
                 
         })->get();
         
-        //return view('ver-estudiantes', ['logged'=>true, 'accesos' => $accesos, 
-            //  'tipo' => $user->tipo, 'espacios'=>$espacios, 'm_get'=>false]);
         return response()->json($accesos);
-        //return Response::json($accesos);
-                
-        
     }
 
 }

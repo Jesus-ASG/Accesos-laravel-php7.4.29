@@ -41,6 +41,13 @@ body{
     color: #fff;
 }
 
+.btn-logout{
+    transition: all .2s linear;
+}
+.btn-logout:hover{
+    color: var(--primary_light);
+}
+
 /* Lector de código de barras*/
 
 .fs1{
