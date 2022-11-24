@@ -14,9 +14,14 @@ body{
     text-align: center;
 }
 
+.c-primary{
+    color: var(--primary);
+}
+
 /* Plantilla principal */
 .bg-navbar{
     background-color: var(--primary);
+    font-family: sans-serif;
 }
 
 .navbar-img{
@@ -31,8 +36,16 @@ body{
     color: #fff;
 }
 .navbar-item a:hover{
+    margin-right: 0;
     font-weight: bold;
     color: #fff;
+}
+
+.btn-logout{
+    transition: all .2s linear;
+}
+.btn-logout:hover{
+    color: var(--primary_light);
 }
 
 /* Lector de código de barras*/

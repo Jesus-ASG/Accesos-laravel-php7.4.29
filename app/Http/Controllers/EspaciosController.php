@@ -10,11 +10,17 @@ class EspaciosController extends Controller
 {
     public function index(){
         $user = Auth::user();
+        if ($user->tipo != 0)
+            return redirect(route('index'));
         $espacios = Espacio::orderBy('nombre')->get();
         return view('espacios', ['logged'=>true, 'tipo'=>$user->tipo, 'espacios'=>$espacios]);
     }
 
     public function store(Request $request){
+        $user = Auth::user();
+        if ($user->tipo != 0)
+            return redirect(route('index'));
+
         $request->validate([
             'nombre' => 'required',
             'descripcion' => 'required',
@@ -35,11 +41,19 @@ class EspaciosController extends Controller
     }
 
     public function destroy(Espacio $espacio){
+        $user = Auth::user();
+        if ($user->tipo != 0)
+            return redirect(route('index'));
+
         $espacio->delete();
         return redirect(route('espacios'));
     }
 
     public function update(Request $request, Espacio $espacio){
+        $user = Auth::user();
+        if ($user->tipo != 0)
+            return redirect(route('index'));
+        
         $request->validate([
             'nombre' => 'required',
             'descripcion' => 'required',
