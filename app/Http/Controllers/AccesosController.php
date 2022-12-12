@@ -36,9 +36,15 @@ class AccesosController extends Controller
         ]);
 
         // obtiene un dato
-        $estudiante = DB::table('estudiantes')->where('matricula', $request->matricula)->first();
         $validarEspacio = Espacio::find($request->espacio);
+        $estudiante = Estudiante::with('accesos')->where('matricula', $request->matricula)->first();
+
         if ($estudiante && $validarEspacio) {
+            // para evitar registros repetidos
+            foreach($estudiante->accesos as $a)
+                if(($a->fecha == Carbon::now()->format('Y-m-d')) && ($a->espacio_id == $validarEspacio->id))
+                    return redirect()->route('lector')->with('m_not_found', 'La matricula "' . $request->matricula . '" ya está registrada');
+            
             $acceso = new Acceso;
             $acceso->fecha = Carbon::now()->toDateString();
             $acceso->hora = Carbon::now()->toTimeString();
