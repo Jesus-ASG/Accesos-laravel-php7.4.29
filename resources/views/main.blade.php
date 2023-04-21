@@ -25,8 +25,8 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-navbar">
         <div class="container-fluid">
             <div>
-                <a href="{{ route('index') }}" style="text-decoration: none;">
-                    <img src="img/logo-navbar.jpg" height="80px" class="navbar-img">
+                <a href="{{ route('index') }}" class="navbar-logo-link">
+                    <img src="img/logo-navbar.jpg" class="navbar-img">
                 </a>
             </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">

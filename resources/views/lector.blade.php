@@ -8,12 +8,12 @@
     <div class="row">
         <div class="centrado">
             <h1 class="titulo row fs1">
-                <div class="col col-4 text-center">
+                <div class="col col-sm-4 text-center d-none d-sm-block">
                     <span class="container-acceso">
                         <p>Acceso:</p>
                     </span>
                 </div>
-                <div class="col col-8">
+                <div class="col-12 col-sm-8">
                     <span id="nombre_entrada"></span>
                 </div>
             </h1>

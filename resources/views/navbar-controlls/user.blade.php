@@ -19,11 +19,16 @@
                     <a href="{{ route('espacios') }}" class="fs4">Administrar espacios</a>
                 </div>
             </li>
+            <li class="d-flex m-1">
+                <div class="navbar-item">
+                    <a href="{{ route('estudiantes') }}" class="fs4">Administrar estudiantes</a>
+                </div>
+            </li>
         @endif
     </ul>
     <li class="d-flex m-1">
         <div class="navbar-item">
-            <a href="{{route('logout')}}" class="fs4" title="Salir"><i class="fa fa-sign-out fa-3x btn-logout" aria-hidden="true"></i></a>
+            <a href="{{route('logout')}}" class="fs-4" title="Salir"><i class="fa fa-sign-out btn-logout" aria-hidden="true"></i></a>
         </div>
     </li>
 </div>

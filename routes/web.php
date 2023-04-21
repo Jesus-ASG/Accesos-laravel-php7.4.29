@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AccesosController;
 use App\Http\Controllers\EspaciosController;
 use App\Http\Controllers\EstudiantesController;
+use App\Http\Controllers\AdminEstudiantesController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\LoginController;
 
@@ -21,11 +22,17 @@ Route::post('/lector', [AccesosController::class, 'store']) -> name('lector')->m
 
 Route::get('/espacios', [EspaciosController::class, 'index']) -> name('espacios')->middleware('auth');
 Route::post('/espacios', [EspaciosController::class, 'store']) -> name('espacios.store')->middleware('auth');
-Route::delete('/espacios/{espacio}', [EspaciosController::class, 'destroy']) -> name('espacios.destroy')->middleware('auth');
 Route::put('/espacios/{espacio}', [EspaciosController::class, 'update']) -> name('espacios.update')->middleware('auth');
+Route::delete('/espacios/{espacio}', [EspaciosController::class, 'destroy']) -> name('espacios.destroy')->middleware('auth');
 
 Route::get('ver_estudiantes', [EstudiantesController::class, 'index']) -> name('ver-estudiantes')->middleware('auth');
 Route::post('ver_estudiantes', [EstudiantesController::class, 'filter']) -> name('ver-estudiantes.filter')->middleware('auth');
+
+Route::get('/estudiantes', [AdminEstudiantesController::class, 'index']) -> name('estudiantes')->middleware('auth');
+Route::get('filter_estudiantes/', [AdminEstudiantesController::class, 'filter']) -> name('estudiantes.filter')->middleware('auth');
+Route::post('/estudiantes', [AdminEstudiantesController::class, 'store']) -> name('estudiantes.store')->middleware('auth');
+Route::put('/estudiantes/{estudiante_id}', [AdminEstudiantesController::class, 'update']) -> name('estudiantes.update')->middleware('auth');
+Route::delete('/estudiantes/{estudiante_id}', [AdminEstudiantesController::class, 'destroy']) -> name('estudiantes.destroy')->middleware('auth');
 
 Route::get('politicas', [PagesController::class, 'politicas']) -> name('politicas');
 

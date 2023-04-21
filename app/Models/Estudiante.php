@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Estudiante extends Model
 {
+    public $timestamps = false;
     use HasFactory;
 
     // Relación uno a muchos

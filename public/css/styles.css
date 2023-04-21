@@ -6,6 +6,8 @@
 body{
     margin: 0;
     padding: 0;
+    width: 100%;
+    min-height: 100vh;
 }
 
 /* Generales */
@@ -129,6 +131,11 @@ body{
     align-items: center;
 }
 
+.form-label-bold label {
+    font-weight: bold;
+}
+
+
 @media only screen and (max-width: 730px){
 	.fs1{
         font-size: 1.8rem!important;
@@ -143,6 +150,13 @@ body{
         font-size: 0.9rem!important;
     }
 }
+.navbar-logo-link{
+    text-decoration: none;
+}
+
+.navbar-logo-link img{
+    height: 60px;
+}
 
 @media only screen and (max-width: 520px){
 	.fs1{
@@ -156,5 +170,8 @@ body{
     }
     .fs4{
         font-size: 0.8rem!important;
+    }
+    .navbar-logo-link img{
+        height: 50px;
     }
 }

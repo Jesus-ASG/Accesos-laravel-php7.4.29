@@ -4,14 +4,6 @@
     Accesos
 @endsection
 
-@section('page_styles')
-<style>
-    .form-label-bold label{
-        font-weight: bold;
-    }
-</style>
-@endsection
-
 @section('contenido')
     <div class="row">
 
@@ -46,7 +38,8 @@
                                 </td>
                                 <td><input type="text" class="form-control fs4" name="academia" placeholder="Academia">
                                 </td>
-                                <td><button class="btn btn-success" title="Agregar"><i class="fa-solid fa-plus"></i></button></td>
+                                <td><button class="btn btn-success" title="Agregar"><i
+                                            class="fa-solid fa-plus"></i></button></td>
                             </form>
                         </tr>
 
@@ -69,17 +62,20 @@
                                             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title c-primary col-11 text-center fw-bold">Editar espacio</h5>
+                                                        <h5 class="modal-title c-primary col-11 text-center fw-bold">Editar
+                                                            espacio</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="close"></button>
                                                     </div>
                                                     <div class="modal-body">
                                                         <form action="{{ route('espacios.update', $e) }}" autocomplete="off"
-                                                            method="POST" id="form_editar_{{ $e->id }}" class="form-label-bold">
+                                                            method="POST" id="form_editar_{{ $e->id }}"
+                                                            class="form-label-bold">
                                                             @csrf
                                                             @method('put')
                                                             <div class="mb-2">
-                                                                <label for="nombre" class="form-label c-primary">Nombre</label>
+                                                                <label for="nombre"
+                                                                    class="form-label c-primary">Nombre</label>
                                                                 <input type="text" class="form-control" name="nombre"
                                                                     placeholder="Nombre" value="{{ $e->nombre }}">
                                                             </div>
@@ -91,7 +87,8 @@
                                                                     value="{{ $e->descripcion }}">
                                                             </div>
                                                             <div class="mb-2">
-                                                                <label for="no_max_asistentes" class="form-label c-primary">Máximo de
+                                                                <label for="no_max_asistentes"
+                                                                    class="form-label c-primary">Máximo de
                                                                     asistentes</label>
                                                                 <input type="number" class="form-control"
                                                                     name="no_max_asistentes" placeholder="No. asistentes"
@@ -105,7 +102,8 @@
                                                                     value="{{ $e->responsable }}">
                                                             </div>
                                                             <div class="mb-2">
-                                                                <label for="academia" class="form-label c-primary">Academia</label>
+                                                                <label for="academia"
+                                                                    class="form-label c-primary">Academia</label>
                                                                 <input type="text" class="form-control"
                                                                     name="academia" placeholder="Academia"
                                                                     value="{{ $e->academia }}">
@@ -136,7 +134,8 @@
                                             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title  col-11 text-center">¿Desea eliminar el espacio: <br>
+                                                        <h5 class="modal-title  col-11 text-center">¿Desea eliminar el
+                                                            espacio: <br>
                                                             "{{ $e->nombre }}"?</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="close"></button>
