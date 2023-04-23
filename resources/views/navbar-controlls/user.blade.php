@@ -10,7 +10,7 @@
         
         <li class="d-flex m-1">
             <div class="navbar-item">
-                <a href="{{ route('ver-estudiantes') }}" class="fs4">Ver estudiantes</a>
+                <a href="{{ route('accesos') }}" class="fs4">Ver accesos</a>
             </div>
         </li>
         @if ($tipo == 0)

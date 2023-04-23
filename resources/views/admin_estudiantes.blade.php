@@ -31,7 +31,7 @@
     <div class="container border mt-5">
         <div>
 
-            <form action="{{ route('ver-estudiantes.filter') }}" autocomplete="off" method="POST">
+            <form action="{{ route('accesos.filter') }}" autocomplete="off" method="POST">
                 @csrf
                 <div class="row">
                     <div class="col-12 col-lg-3">

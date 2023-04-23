@@ -1,7 +1,7 @@
 @extends('main')
 
 @section('titulo')
-    Ver estudiantes
+    Ver accesos
 @endsection
 
 @section('contenido')
@@ -9,7 +9,7 @@
     <div class="container border mt-5">
         <div>
             
-            <form action="{{ route('ver-estudiantes.filter') }}" autocomplete="off" method="POST">
+            <form action="{{ route('accesos.filter') }}" autocomplete="off" method="POST">
                 @csrf
                 <div class="row">
                     <div class="col-12 col-lg-2">
@@ -110,7 +110,7 @@
             let fecha = $("#fe_fecha").val();
 
             $.ajax({
-                url: "{{ url('ver_estudiantes') }}",
+                url: "{{ route('accesos') }}",
                 method: "POST",
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="crsf-token"]').attr('content') 
@@ -210,7 +210,11 @@
                         </tr>
                         `;
                     }
+                    
                     document.querySelector('#tabla_estudiantes tbody').innerHTML = x;
+                },
+                error: function(xhr, status, error){
+                    //console.log(xhr.responseText);
                 }
             });
         }

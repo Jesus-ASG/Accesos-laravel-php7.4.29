@@ -20,12 +20,20 @@ use Illuminate\Support\Facades\DB;
 
 class AccesosController extends Controller
 {
-    public function index()
+    public function lector()
     {
         $user = Auth::user();
         $espacios = Espacio::orderBy('nombre')->get(); // para seleccionar espacio
         return view('lector', ['logged'=>true, 'tipo' => $user->tipo, 'espacios'=>$espacios]);
-        
+    }
+
+    public function index(){
+        $user = Auth::user();
+        $espacios = Espacio::orderBy('nombre')->get(); // para seleccionar espacio
+        $accesos = Acceso::where('fecha', '')->get();
+
+        return view('accesos', ['logged'=>true, 'accesos' => $accesos, 
+            'tipo' => $user->tipo, 'espacios'=>$espacios, 'm_get'=>true]);
     }
 
     public function store(Request $request)
@@ -57,5 +65,32 @@ class AccesosController extends Controller
         return redirect()->route('lector')->with('m_not_found', 'La matricula "' . $request->matricula . '" no fue encontrada');        
     }
 
+    public function filter(Request $request){
+        // validar
+        $request->validate([
+            'turno' => 'required',
+            'grado' => 'required',
+            'grupo' => 'required',
+            'espacio' => 'required'
+        ]);
+        $accesos = Acceso::with('estudiante', 'espacio')->where([
+
+            ['espacio_id', $request->espacio],
+            ['fecha', $request->fecha],
+            
+            ])->whereHas('estudiante', function($query) use ($request){
+                if(($request->turno != 'all'))
+                    $query->where('turno', $request->turno);
+                
+                if(($request->grado != 'all'))
+                    $query->where('grado', $request->grado);
+                
+                if(($request->grupo != 'all'))
+                    $query->where('grupo', $request->grupo);
+                
+        })->get();
+        
+        return response()->json($accesos);
+    }
     
 }

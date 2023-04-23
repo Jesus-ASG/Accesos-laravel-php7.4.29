@@ -17,7 +17,7 @@ Route::get('iniciar_sesion', [PagesController::class, 'login']) -> name('login')
 Route::post('iniciar_sesion', [LoginController::class, 'login'])-> name('login.post');
 Route::get('/logout', [LoginController::class, 'logout']) -> name('logout');
 
-Route::get('/lector', [AccesosController::class, 'index']) -> name('lector')->middleware('auth');
+Route::get('/lector', [AccesosController::class, 'lector']) -> name('lector')->middleware('auth');
 Route::post('/lector', [AccesosController::class, 'store']) -> name('lector')->middleware('auth');
 
 Route::get('/espacios', [EspaciosController::class, 'index']) -> name('espacios')->middleware('auth');
@@ -25,8 +25,8 @@ Route::post('/espacios', [EspaciosController::class, 'store']) -> name('espacios
 Route::put('/espacios/{espacio}', [EspaciosController::class, 'update']) -> name('espacios.update')->middleware('auth');
 Route::delete('/espacios/{espacio}', [EspaciosController::class, 'destroy']) -> name('espacios.destroy')->middleware('auth');
 
-Route::get('ver_estudiantes', [EstudiantesController::class, 'index']) -> name('ver-estudiantes')->middleware('auth');
-Route::post('ver_estudiantes', [EstudiantesController::class, 'filter']) -> name('ver-estudiantes.filter')->middleware('auth');
+Route::get('accesos', [AccesosController::class, 'index']) -> name('accesos')->middleware('auth');
+Route::post('accesos', [AccesosController::class, 'filter']) -> name('accesos.filter')->middleware('auth');
 
 Route::get('/estudiantes', [AdminEstudiantesController::class, 'index']) -> name('estudiantes')->middleware('auth');
 Route::post('/estudiantes', [AdminEstudiantesController::class, 'storeMany']) -> name('estudiantes.storeMany')->middleware('auth');
