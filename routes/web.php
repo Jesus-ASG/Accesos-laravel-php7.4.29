@@ -29,8 +29,8 @@ Route::get('ver_estudiantes', [EstudiantesController::class, 'index']) -> name('
 Route::post('ver_estudiantes', [EstudiantesController::class, 'filter']) -> name('ver-estudiantes.filter')->middleware('auth');
 
 Route::get('/estudiantes', [AdminEstudiantesController::class, 'index']) -> name('estudiantes')->middleware('auth');
+Route::post('/estudiantes', [AdminEstudiantesController::class, 'storeMany']) -> name('estudiantes.storeMany')->middleware('auth');
 Route::get('filter_estudiantes/', [AdminEstudiantesController::class, 'filter']) -> name('estudiantes.filter')->middleware('auth');
-Route::post('/estudiantes', [AdminEstudiantesController::class, 'store']) -> name('estudiantes.store')->middleware('auth');
 Route::put('/estudiantes/{estudiante_id}', [AdminEstudiantesController::class, 'update']) -> name('estudiantes.update')->middleware('auth');
 Route::delete('/estudiantes/{estudiante_id}', [AdminEstudiantesController::class, 'destroy']) -> name('estudiantes.destroy')->middleware('auth');
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 use Carbon\Carbon;
 use App\Models\Acceso;
@@ -22,7 +23,6 @@ class AdminEstudiantesController extends Controller
             'estudiantes'=>$estudiantes, 
             'm_get'=>true]
         );
-        
     }
 
     public function filter(Request $request){
@@ -52,38 +52,61 @@ class AdminEstudiantesController extends Controller
         return response()->json($estudiantes);
     }
 
-    public function store(Request $request){
+    public function storeMany(Request $request){
         $user = Auth::user();
         if ($user->tipo != 0)
             return redirect(route('index'));
 
         $request->validate([
-            'no_lista' => 'required',
-            'matricula' => 'required',
-            'nombre' => 'required',
-            'grado' => 'required',
-            'grupo' => 'required',
-            'turno' => 'required',
+            'overwrite' => 'required',
+            'estudiantes' => 'required',
         ]);
 
-        // Revisar que la matrícula solicitada no se encuentre
-        $duplicado = Estudiante::where('matricula', $request->matricula);
-        if($duplicado->count() > 0){
-            session()->flash('error', 'Esa matrícula ya existe');            
-            return redirect(route('estudiantes'));
+        
+        $overwrite_str = $request->input('overwrite', false);
+        $overwrite = filter_var($overwrite_str, FILTER_VALIDATE_BOOLEAN);
+        $estudiantes = json_decode($request->input('estudiantes', []));
+        if ($overwrite){
+            session()->flash('success', 'Se actualizaron correctamente datos de los estudiantes.');
+        }
+        else{
+            session()->flash('success', 'Se agregaron correctamente nuevos estudiantes.');
+        }
+        
+        $duplicado = null;
+        
+        foreach($estudiantes as $e){
+        
+            $estudiante = new Estudiante();
+
+            // Revisar si la matrícula solicitada existe
+            $duplicado = Estudiante::where('matricula', $e->matricula)->first();
+            // SI está duplicado
+            if($duplicado !== null){
+                if ($overwrite){ // Si quiere sobrescribir
+                    $estudiante->delete();
+                    $estudiante = $duplicado;
+                    session()->flash('warning', 'Matrículas existentes fueron sobrescritas.');
+                }
+                else{ // Si no quiere sobrescribir
+                    session()->flash('warning', 'Matrículas existentes no fueron agregadas.');
+                    continue;
+                }
+            }
+            
+            $estudiante->no_lista = intval($e->no_lista);
+            $estudiante->matricula = $e->matricula;
+            
+            $estudiante->nombre = $e->nombre;
+            $estudiante->grado = $e->grado;
+            $estudiante->grupo = $e->grupo;
+            $estudiante->turno = $e->turno;
+            $estudiante->save();
         }
 
-        $estudiante = new Estudiante();
-
-        $estudiante->no_lista = $request->no_lista;
-        $estudiante->matricula = $request->matricula;
-        $estudiante->nombre = $request->nombre;
-        $estudiante->grado = $request->grado;
-        $estudiante->grupo = $request->grupo;
-        $estudiante->turno = $request->turno;
-        
-        $estudiante->save();
-        return redirect(route('estudiantes'));
+        return response()->json([
+            'message'=> 'success',
+        ]);
     }
 
     public function update(Request $request, int $estudiante_id){
@@ -129,7 +152,6 @@ class AdminEstudiantesController extends Controller
         $estudiante->grado = $request->grado;
         $estudiante->grupo = $request->grupo;
         $estudiante->turno = $request->turno;
-        
         $estudiante->save();
 
         if ($estudiante_id == 0)
